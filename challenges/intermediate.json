@@ -1,0 +1,488 @@
+{
+    "level": "intermediate",
+    "challenges": [
+        {
+            "id": 1,
+            "description": "List all files in the current directory with detailed information, including file permissions, ownership, size, and modification date.",
+            "solution": "ls -l",
+            "hints": [
+                "The 'ls' command can show detailed information with the '-l' flag.",
+                "Each column in the output represents different information like permissions, owner, file size, and modification date."
+            ],
+            "explanation": "'ls -l' is a common command for displaying detailed information about files and directories. The output shows the file permissions, number of links, owner, group, file size, modification time, and filename. This is important for understanding file security, ownership, and modification history.",
+            "learning_points": [
+                "Understand file permissions and ownership.",
+                "Learn how to interpret the output of 'ls -l'.",
+                "Know the role of file sizes and timestamps in system administration."
+            ],
+            "real-world-application": "System administrators often use 'ls -l' to check file permissions, ownership, and the modification time of system files, ensuring proper security and access control."
+        },
+        {
+            "id": 2,
+            "description": "Change the permissions of a file named 'test.txt' so that only the owner can read, write, and execute it, and others have no permissions.",
+            "solution": "chmod 700 test.txt",
+            "hints": [
+                "'chmod' is used to change file permissions.",
+                "The permission numbers represent read (4), write (2), and execute (1) for owner, group, and others.",
+                "700 grants full permissions to the owner and no permissions to anyone else."
+            ],
+            "explanation": "'chmod' (change mode) is used to modify file permissions in Linux. The numbers represent read (4), write (2), and execute (1) permissions for the owner, group, and others. In 'chmod 700 test.txt', '7' (read, write, execute) is for the owner, and '0' means no permissions for group and others.",
+            "learning_points": [
+                "Understand the numeric representation of file permissions.",
+                "Learn how to use 'chmod' to control file access.",
+                "Understand the importance of limiting file permissions for security."
+            ],
+            "real-world-application": "Setting proper permissions on sensitive files is critical to maintaining system security. For example, system configuration files should only be accessible to system administrators."
+        },
+        {
+            "id": 3,
+            "description": "Create a symbolic link named 'shortcut' pointing to an existing file 'document.txt'.",
+            "solution": "ln -s document.txt shortcut",
+            "hints": [
+                "'ln -s' creates a symbolic (soft) link, which is a reference to another file.",
+                "A symbolic link can point to a file or directory, and it is useful for creating shortcuts or references."
+            ],
+            "explanation": "A symbolic link (symlink) is a file that points to another file or directory. The '-s' flag is used to create a symbolic link rather than a hard link. Symlinks are commonly used to create shortcuts or references to files in different directories without duplicating them.",
+            "learning_points": [
+                "Understand the difference between hard links and symbolic links.",
+                "Learn how to use 'ln -s' to create symlinks.",
+                "Understand how symlinks are used for creating efficient file system structures."
+            ],
+            "real-world-application": "Symlinks are widely used in system administration for managing shared files, creating shortcuts to commonly used files or directories, and maintaining consistent paths to important files."
+        },
+        {
+            "id": 4,
+            "description": "Count the number of files and directories in the current directory.",
+            "solution": "ls -1 | wc -l",
+            "hints": [
+                "'ls -1' lists each file or directory on a new line.",
+                "'wc -l' counts the number of lines in the input."
+            ],
+            "explanation": "In this command, 'ls -1' lists each item in the directory on a separate line. The output is piped to 'wc -l', which counts the number of lines. This effectively counts the number of files and directories in the current directory.",
+            "learning_points": [
+                "Learn how to pipe commands using '|' for chaining multiple commands.",
+                "Understand how 'wc -l' can be used to count lines or items.",
+                "Familiarize yourself with the '-1' option in 'ls' for listing files one per line."
+            ],
+            "real-world-application": "Counting the number of files and directories is helpful when managing a file system to get a quick overview of directory contents, especially when dealing with large numbers of files."
+        },
+        {
+            "id": 5,
+            "description": "Search for the term 'error' in the system log file '/var/log/syslog'.",
+            "solution": "grep 'error' /var/log/syslog",
+            "hints": [
+                "'grep' is used for searching patterns in files.",
+                "Enclose the search term in single quotes to search for exact matches.",
+                "You can use 'grep -i' for case-insensitive searches."
+            ],
+            "explanation": "'grep' is one of the most powerful search tools in Linux. It searches for a pattern (in this case, 'error') in the specified file(s). By using 'grep', you can quickly find relevant information in logs or any text files. The '-i' flag makes the search case-insensitive, so it will match 'Error', 'ERROR', etc.",
+            "learning_points": [
+                "Master the 'grep' command for searching through files.",
+                "Learn to use regular expressions with 'grep' for advanced searching.",
+                "Understand the significance of log files in troubleshooting system issues."
+            ],
+            "real-world-application": "System administrators use 'grep' to search through log files to identify errors, warnings, or specific events. It's an essential tool for debugging and maintaining a healthy system."
+        },
+        {
+            "id": 6,
+            "description": "Show the last 20 lines of the system log file '/var/log/syslog'.",
+            "solution": "tail -n 20 /var/log/syslog",
+            "hints": [
+                "'tail' displays the end of a file.",
+                "The '-n' flag specifies the number of lines to display."
+            ],
+            "explanation": "'tail' is a common command used to view the most recent entries in a log file. By default, it shows the last 10 lines, but you can use '-n' to specify the number of lines to display. This is useful for monitoring logs in real-time or checking recent events in system logs.",
+            "learning_points": [
+                "Understand the use of the 'tail' command for viewing file endings.",
+                "Learn how to combine 'tail' with other commands for log monitoring.",
+                "Master the use of 'tail' for troubleshooting and viewing real-time data."
+            ],
+            "real-world-application": "'tail' is crucial for administrators and developers when monitoring logs in real-time, such as watching for system errors, application logs, or other events as they happen."
+        },
+        {
+            "id": 7,
+            "description": "Display disk usage statistics for each directory in the current location, including human-readable sizes.",
+            "solution": "du -sh *",
+            "hints": [
+                "'du' stands for disk usage and reports the amount of space used by files and directories.",
+                "The '-s' option shows only the total for each argument.",
+                "The '-h' option provides human-readable sizes (e.g., KB, MB, GB)."
+            ],
+            "explanation": "'du' (disk usage) shows how much space a directory and its contents are using. The '-s' flag gives a summary for each argument (instead of listing every file), and '-h' makes the output human-readable. This is useful for determining which directories are using the most space in a file system.",
+            "learning_points": [
+                "Learn how to use 'du' to analyze disk usage by directory.",
+                "Understand the importance of disk space management.",
+                "Master the use of flags for modifying command output."
+            ],
+            "real-world-application": "Disk usage analysis is crucial when managing file systems. Administrators use 'du' to identify large directories and ensure efficient disk space allocation."
+        },
+        {
+            "id": 8,
+            "description": "Find all files with the extension '.log' in the '/var/log' directory.",
+            "solution": "find /var/log -name '*.log'",
+            "hints": [
+                "'find' is used to search for files in a directory hierarchy.",
+                "The '-name' option allows you to search by filename pattern, and the '*' wildcard represents any sequence of characters."
+            ],
+            "explanation": "'find' is one of the most powerful commands for locating files. The '-name' option lets you search for files by pattern, and the '.' represents the current directory. Wildcards like '*' can match any sequence of characters, making it easy to search for a pattern.",
+            "learning_points": [
+                "Master the use of 'find' for file searching.",
+                "Learn how to use wildcards in Linux commands.",
+                "Understand how to search in specific directories."
+            ],
+            "real-world-application": "System administrators often use 'find' to locate log files, especially when troubleshooting system issues or searching for specific types of files across a system."
+        },
+        {
+            "id": 9,
+            "description": "Monitor the real-time system usage (CPU, memory, and swap) with the 'top' command.",
+            "solution": "top",
+            "hints": [
+                "'top' displays system summary information and a list of tasks currently being managed by the Linux kernel.",
+                "Use 'q' to exit the 'top' command."
+            ],
+            "explanation": "'top' provides a dynamic real-time view of a system’s processes, CPU usage, memory usage, and more. It’s a very useful tool for monitoring the performance of a system and identifying any resource-hogging processes.",
+            "learning_points": [
+                "Learn how to interpret the output of 'top'.",
+                "Understand how to use 'top' to troubleshoot high CPU or memory usage.",
+                "Become familiar with other tools that provide system usage details."
+            ],
+            "real-world-application": "'top' is frequently used by administrators to monitor system performance and manage processes that are using too many system resources."
+        },
+        {
+            "id": 10,
+            "description": "View detailed information about the available memory in your system.",
+            "solution": "free -h",
+            "hints": [
+                "'free' shows the amount of free and used memory in the system.",
+                "Use the '-h' flag for human-readable sizes (MB, GB)."
+            ],
+            "explanation": "'free' provides an overview of the system’s memory usage, including total, used, free, shared, and available memory, as well as swap space. The '-h' flag presents the data in a human-readable format, using units like MB and GB instead of bytes.",
+            "learning_points": [
+                "Understand the memory usage metrics displayed by 'free'.",
+                "Learn how to monitor memory and swap space effectively.",
+                "Understand the importance of managing memory for system performance."
+            ],
+            "real-world-application": "Memory management is crucial for ensuring a system runs smoothly. Monitoring available memory is essential for avoiding slowdowns, crashes, or system hangs."
+        },
+        {
+            "id": 11,
+            "description": "List the processes running on the system, ordered by their memory usage.",
+            "solution": "ps aux --sort=-%mem",
+            "hints": [
+                "'ps aux' lists all running processes with detailed information.",
+                "The '--sort=-%mem' option sorts processes by memory usage in descending order."
+            ],
+            "explanation": "'ps' (process status) displays information about the currently running processes. The 'aux' options show all processes with detailed information, while '--sort=-%mem' sorts them by memory usage in descending order. This helps identify processes that consume excessive memory.",
+            "learning_points": [
+                "Master the 'ps' command and its options.",
+                "Learn how to sort process data by resource usage.",
+                "Understand how to monitor and manage system processes."
+            ],
+            "real-world-application": "Administrators often use this command to troubleshoot high memory usage or resource-hogging processes."
+        },
+        {
+            "id": 12,
+            "description": "Kill a process by its name 'firefox'.",
+            "solution": "pkill firefox",
+            "hints": [
+                "'pkill' allows you to terminate processes by name.",
+                "Be cautious when using 'pkill' as it terminates all matching processes."
+            ],
+            "explanation": "'pkill' is used to kill processes by their name or other criteria. It sends a signal to terminate the specified process. In this case, 'pkill firefox' will kill all running instances of Firefox.",
+            "learning_points": [
+                "Learn how to use 'pkill' to terminate processes by name.",
+                "Understand process termination and signals in Linux.",
+                "Learn how to prevent accidental termination of important processes."
+            ],
+            "real-world-application": "Administrators use 'pkill' to terminate misbehaving processes or stop services."
+        },
+        {
+            "id": 13,
+            "description": "View the current date and time in the system's locale.",
+            "solution": "date",
+            "hints": [
+                "'date' displays the current system date and time.",
+                "Use the '--utc' flag for the UTC time."
+            ],
+            "explanation": "'date' displays the current system date and time in the local timezone. You can format the output using various options or show UTC time by adding '--utc'.",
+            "learning_points": [
+                "Learn how to use 'date' to display and format system time.",
+                "Understand system time and how it's used in logs and scheduling tasks.",
+                "Know how to use time-related utilities like 'date' in scripts."
+            ],
+            "real-world-application": "System time is crucial for scheduling tasks, logging, and managing time-sensitive services on servers."
+        },
+        {
+            "id": 14,
+            "description": "Check the available disk space on all mounted file systems.",
+            "solution": "df -h",
+            "hints": [
+                "'df' displays the disk space usage for all mounted file systems.",
+                "The '-h' flag presents the information in human-readable units (MB, GB)."
+            ],
+            "explanation": "'df' shows how much disk space is used and available on mounted file systems. The '-h' option provides a human-readable format, which is more convenient than raw bytes.",
+            "learning_points": [
+                "Learn how to monitor disk space usage with 'df'.",
+                "Understand the importance of managing disk space for system health.",
+                "Understand different filesystems and their mount points."
+            ],
+            "real-world-application": "Monitoring disk space is crucial for preventing storage exhaustion and ensuring system stability."
+        },
+        {
+            "id": 15,
+            "description": "Display the system's hostname.",
+            "solution": "hostname",
+            "hints": [
+                "'hostname' displays the system’s name.",
+                "You can use the '-f' flag to show the fully qualified domain name (FQDN)."
+            ],
+            "explanation": "The 'hostname' command is used to display or set the system’s hostname. It’s important for networking and server identification. The '-f' flag shows the fully qualified domain name (FQDN), which includes the domain name as well.",
+            "learning_points": [
+                "Understand the significance of a system's hostname in networking.",
+                "Learn how to display and set the hostname.",
+                "Familiarize yourself with the use of domain names in a networked environment."
+            ],
+            "real-world-application": "The hostname is vital for network identification, allowing other systems to recognize and communicate with your machine."
+        },
+        {
+            "id": 16,
+            "description": "Monitor network interfaces and their statistics.",
+            "solution": "ifstat",
+            "hints": [
+                "'ifstat' provides real-time statistics for network interfaces.",
+                "Use 'ifstat -i eth0' to monitor a specific network interface."
+            ],
+            "explanation": "'ifstat' shows the statistics of network interfaces in real-time, such as the number of packets sent and received. It’s useful for monitoring the network bandwidth usage of a machine. You can specify the interface using '-i'.",
+            "learning_points": [
+                "Learn how to monitor real-time network usage.",
+                "Understand network interface statistics and their role in troubleshooting.",
+                "Familiarize yourself with different tools for network monitoring."
+            ],
+            "real-world-application": "Network administrators use 'ifstat' to monitor network performance and identify potential bottlenecks in network traffic."
+        },
+        {
+            "id": 17,
+            "description": "Find out the IP address of your machine.",
+            "solution": "ip addr show",
+            "hints": [
+                "'ip addr show' displays information about all network interfaces.",
+                "'ip a' is a shorthand for 'ip addr show'."
+            ],
+            "explanation": "The 'ip addr show' command is used to display the IP address and other information about all network interfaces on your machine. This is useful for determining your system's IP address for network communications.",
+            "learning_points": [
+                "Learn how to use the 'ip' command to manage network interfaces.",
+                "Understand the difference between IPv4 and IPv6 addresses.",
+                "Know how to identify the local IP address for your machine."
+            ],
+            "real-world-application": "Knowing the IP address is crucial for network configuration, troubleshooting, and connecting to other systems on the same network."
+        },
+        {
+            "id": 18,
+            "description": "Check the current status of a specific service, such as 'apache2'.",
+            "solution": "systemctl status apache2",
+            "hints": [
+                "'systemctl' is used to control systemd services.",
+                "'systemctl status' shows the current status of a service."
+            ],
+            "explanation": "'systemctl' is used to manage services in systems that use systemd as the init system. The 'status' option provides information about a service’s current status, including whether it’s running, stopped, or inactive.",
+            "learning_points": [
+                "Learn how to manage and monitor system services with 'systemctl'.",
+                "Understand the relationship between system services and system performance.",
+                "Familiarize yourself with systemd service management."
+            ],
+            "real-world-application": "Service management is essential for maintaining web servers, databases, and other services on a Linux system. 'systemctl' is used for starting, stopping, and monitoring services."
+        },
+        {
+            "id": 19,
+            "description": "View the last 10 system log entries for authentication-related activities.",
+            "solution": "grep 'sshd' /var/log/auth.log | tail -n 10",
+            "hints": [
+                "'grep' searches for specific patterns in files.",
+                "'auth.log' contains information about authentication attempts and user login activities."
+            ],
+            "explanation": "The '/var/log/auth.log' file contains logs related to authentication activities, such as user logins and SSH access. By using 'grep', you can filter for specific logs, such as 'sshd' (SSH daemon), and view the last 10 entries using 'tail'.",
+            "learning_points": [
+                "Understand the significance of authentication logs for security.",
+                "Learn how to filter logs based on specific keywords.",
+                "Familiarize yourself with the use of log files for troubleshooting."
+            ],
+            "real-world-application": "Administrators use authentication logs to monitor login attempts, prevent unauthorized access, and audit user activity."
+        },
+        {
+            "id": 20,
+            "description": "Schedule a task to run every day at 2:30 AM using cron.",
+            "solution": "crontab -e\n30 2 * * * /path/to/script.sh",
+            "hints": [
+                "The 'crontab' command is used to edit the cron jobs for scheduled tasks.",
+                "The format for cron timing is 'minute hour day month day-of-week'."
+            ],
+            "explanation": "The 'crontab' command allows users to schedule tasks at specified times. In this example, the cron job runs a script every day at 2:30 AM. You can specify different timing options to customize when the task should run.",
+            "learning_points": [
+                "Understand how to schedule tasks with cron.",
+                "Learn the cron timing syntax and its components.",
+                "Familiarize yourself with automating system tasks."
+            ],
+            "real-world-application": "Cron jobs are commonly used to automate repetitive tasks, such as backups, log rotation, and system maintenance."
+        },
+        {
+            "id": 21,
+            "description": "View and monitor real-time network traffic.",
+            "solution": "netstat -tuln",
+            "hints": [
+                "'netstat' displays network connections and listening ports.",
+                "'-tuln' shows TCP/UDP connections and listening ports in numeric format."
+            ],
+            "explanation": "'netstat' shows information about network connections, routing tables, and listening ports. The '-tuln' options display TCP and UDP ports that are currently open and their associated services, helping you monitor network activity.",
+            "learning_points": [
+                "Learn how to monitor active network connections.",
+                "Understand the role of network services and ports.",
+                "Become familiar with network troubleshooting and diagnostics."
+            ],
+            "real-world-application": "Network administrators use 'netstat' to monitor the status of network connections, diagnose network issues, and check for unauthorized services running on the system."
+        },
+        {
+            "id": 22,
+            "description": "Change the system's timezone to 'UTC'.",
+            "solution": "sudo timedatectl set-timezone UTC",
+            "hints": [
+                "'timedatectl' is used to control system time and timezone settings.",
+                "You can view the current timezone with 'timedatectl show'."
+            ],
+            "explanation": "The 'timedatectl' command is used to set the system’s time, date, and timezone. The 'set-timezone' option allows you to set the system timezone, in this case, to 'UTC' (Coordinated Universal Time).",
+            "learning_points": [
+                "Learn how to manage system time settings using 'timedatectl'.",
+                "Understand the importance of time synchronization for servers and applications.",
+                "Know how to configure timezones on a Linux system."
+            ],
+            "real-world-application": "Time synchronization is essential for server logs, scheduling tasks, and coordinating between geographically dispersed systems."
+        },
+        {
+            "id": 23,
+            "description": "Check for broken symbolic links in the current directory.",
+            "solution": "find . -type l -! -exec test -e {} \; -print",
+            "hints": [
+                "'find' can be used to locate files that match a given condition.",
+                "'-type l' looks for symbolic links, and '-! -exec test -e' checks if the link target exists."
+            ],
+            "explanation": "Broken symbolic links occur when the target of the link no longer exists. This command uses 'find' to search for symbolic links and checks if their targets are still valid. If not, it lists the broken links.",
+            "learning_points": [
+                "Learn how to use 'find' with conditions to identify issues.",
+                "Understand the importance of maintaining symbolic links.",
+                "Learn to automate the detection of broken links in large directories."
+            ],
+            "real-world-application": "Broken symlinks can cause applications or scripts to fail. This command helps administrators identify and fix them."
+        },
+        {
+            "id": 24,
+            "description": "Create a backup of a directory using 'tar' and compress it with gzip.",
+            "solution": "tar -czf backup.tar.gz /path/to/directory",
+            "hints": [
+                "'tar' is used to create archives, and the '-czf' options create a compressed archive.",
+                "The 'gzip' compression is specified by the 'z' option."
+            ],
+            "explanation": "The 'tar' command is used to create compressed archives. The '-czf' options tell 'tar' to create ('c'), compress with gzip ('z'), and specify the output file ('f'). This is commonly used for backups and transferring directories over the network.",
+            "learning_points": [
+                "Learn how to use 'tar' for backup and archiving purposes.",
+                "Understand compression and its impact on file sizes.",
+                "Know how to create and extract compressed archives."
+            ],
+            "real-world-application": "Backups are a critical part of system administration, and 'tar' is widely used to create backups and compress files for storage or transfer."
+        },
+        {
+            "id": 25,
+            "description": "Extract the contents of a '.tar.gz' archive.",
+            "solution": "tar -xzf archive.tar.gz",
+            "hints": [
+                "'tar' is used for both creating and extracting archives.",
+                "The '-xzf' options tell 'tar' to extract ('x'), decompress with gzip ('z'), and specify the archive file ('f')."
+            ],
+            "explanation": "The 'tar' command can also be used to extract files from compressed archives. The '-xzf' options allow you to extract ('x'), decompress with gzip ('z'), and specify the file ('f') to extract.",
+            "learning_points": [
+                "Learn how to extract files from compressed archives.",
+                "Understand how compression and archiving work together in Linux.",
+                "Know the different formats supported by 'tar'."
+            ],
+            "real-world-application": "Extracting compressed archives is common when downloading software packages, transferring backups, or restoring files."
+        },
+        {
+            "id": 26,
+            "description": "Rename a file from 'oldname.txt' to 'newname.txt'.",
+            "solution": "mv oldname.txt newname.txt",
+            "hints": [
+                "'mv' is used to move files, but can also rename them.",
+                "To rename, simply provide the new file name as the second argument."
+            ],
+            "explanation": "The 'mv' command is used to move files, but it can also rename them when used with the same directory. In this case, it changes the file name from 'oldname.txt' to 'newname.txt'.",
+            "learning_points": [
+                "Learn how to rename files using 'mv'.",
+                "Understand the difference between moving and renaming files in Linux.",
+                "Familiarize yourself with basic file management tasks."
+            ],
+            "real-world-application": "Renaming files is a basic but common operation, useful for organizing files or correcting naming conventions."
+        },
+        {
+            "id": 27,
+            "description": "Redirect the output of the 'ls' command to a file named 'output.txt'.",
+            "solution": "ls > output.txt",
+            "hints": [
+                "'>' is used to redirect output to a file.",
+                "If 'output.txt' already exists, this will overwrite it. Use '>>' to append instead."
+            ],
+            "explanation": "The '>' operator redirects the output of a command to a file. If the file exists, it will be overwritten. If you want to append to an existing file, you can use '>>' instead of '>'.",
+            "learning_points": [
+                "Learn how to redirect command output to a file.",
+                "Understand file redirection and its impact on existing files.",
+                "Learn to use both overwriting and appending redirection."
+            ],
+            "real-world-application": "Output redirection is useful for saving the output of commands to a file for later analysis or documentation."
+        },
+        {
+            "id": 28,
+            "description": "Append the output of the 'df' command to a file called 'disk_usage.txt'.",
+            "solution": "df -h >> disk_usage.txt",
+            "hints": [
+                "'>>' appends output to a file rather than overwriting it.",
+                "'df -h' shows disk usage in a human-readable format."
+            ],
+            "explanation": "Using '>>' appends the output of the 'df' command to an existing file. This is useful for logging disk usage over time or periodically saving output without losing previous data.",
+            "learning_points": [
+                "Learn how to append output to a file.",
+                "Understand the importance of log management and incremental output.",
+                "Familiarize yourself with disk usage monitoring."
+            ],
+            "real-world-application": "Disk usage monitoring and logging are critical for tracking storage over time, especially in server environments."
+        },
+        {
+            "id": 29,
+            "description": "Show the running processes in a tree-like structure.",
+            "solution": "pstree",
+            "hints": [
+                "'pstree' displays processes in a tree format, showing the parent-child relationships."
+            ],
+            "explanation": "'pstree' provides a hierarchical view of all running processes, showing the parent-child relationships between them. This is useful for understanding the process tree and identifying which processes are spawned by others.",
+            "learning_points": [
+                "Learn how to visualize the process tree.",
+                "Understand parent-child relationships between processes.",
+                "Use 'pstree' for process management and troubleshooting."
+            ],
+            "real-world-application": "Visualizing process hierarchies is useful for understanding system workloads and managing process dependencies."
+        },
+        {
+            "id": 30,
+            "description": "Display the manual page for the 'grep' command.",
+            "solution": "man grep",
+            "hints": [
+                "'man' displays the manual pages for commands in Linux.",
+                "You can use 'man [command]' to view detailed usage information and options for a command."
+            ],
+            "explanation": "'man' is the command used to access the manual pages for other commands in Linux. It provides detailed information on how a command works, its options, and usage examples.",
+            "learning_points": [
+                "Learn how to use the 'man' command to access documentation.",
+                "Familiarize yourself with command syntax and available options.",
+                "Use 'man' to explore new commands and deepen your knowledge."
+            ],
+            "real-world-application": "'man' is indispensable for troubleshooting and learning new commands. It’s a built-in resource that every Linux user should know how to use."
+        }
+    ]
+}
+

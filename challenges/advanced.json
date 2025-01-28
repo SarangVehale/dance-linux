@@ -1,0 +1,463 @@
+{
+    "level": "advanced",
+    "challenges": [
+        {
+            "id": 1,
+            "description": "Create a new user 'john' with a home directory and set a password for the user.",
+            "solution": "sudo useradd -m john && sudo passwd john",
+            "hints": [
+                "'useradd' is used to create a new user.",
+                "The '-m' flag creates the user's home directory.",
+                "'passwd' is used to set the password for the new user."
+            ],
+            "explanation": "'useradd' creates a new user, and the '-m' flag ensures the creation of a home directory. After that, 'passwd' is used to set a password for the user. This is a fundamental task for user management in a Linux system.",
+            "learning_points": [
+                "Learn how to create and manage user accounts in Linux.",
+                "Understand the role of the home directory in user management.",
+                "Know the basic steps for securing user accounts."
+            ],
+            "real-world-application": "Creating and managing users is essential for system administration, especially when controlling access to different parts of a system."
+        },
+        {
+            "id": 2,
+            "description": "Grant the user 'john' sudo privileges.",
+            "solution": "sudo usermod -aG sudo john",
+            "hints": [
+                "'usermod' is used to modify user accounts.",
+                "'-aG' adds the user to the specified group."
+            ],
+            "explanation": "The 'usermod' command is used to modify a user's account, and the '-aG' flag adds the user to a specific group, in this case, the 'sudo' group. This grants 'john' the ability to execute commands with elevated privileges using 'sudo'.",
+            "learning_points": [
+                "Learn how to grant and manage sudo privileges for users.",
+                "Understand the concept of user groups and their permissions.",
+                "Familiarize yourself with security best practices for granting sudo access."
+            ],
+            "real-world-application": "Granting sudo privileges is crucial for system administration tasks, but it must be done carefully to avoid potential security risks."
+        },
+        {
+            "id": 3,
+            "description": "Remove the user 'john' and their home directory.",
+            "solution": "sudo userdel -r john",
+            "hints": [
+                "'userdel' is used to delete a user account.",
+                "'-r' removes the user's home directory and mail spool along with the account."
+            ],
+            "explanation": "'userdel' is used to delete a user account from the system. The '-r' flag ensures that the user’s home directory and associated files are also removed. This is useful for cleaning up users who are no longer needed.",
+            "learning_points": [
+                "Learn how to safely delete user accounts and their associated files.",
+                "Understand the importance of proper user cleanup to avoid clutter and security risks."
+            ],
+            "real-world-application": "Removing unnecessary user accounts is important for maintaining security and avoiding potential access points for unauthorized users."
+        },
+        {
+            "id": 4,
+            "description": "Create a group named 'developers' and add 'john' and 'mary' to the group.",
+            "solution": "sudo groupadd developers && sudo usermod -aG developers john && sudo usermod -aG developers mary",
+            "hints": [
+                "'groupadd' is used to create a new group.",
+                "'usermod' with '-aG' adds users to a specific group."
+            ],
+            "explanation": "The 'groupadd' command creates a new group, and 'usermod -aG' adds users to that group. Groups are used to manage user permissions collectively. By adding 'john' and 'mary' to the 'developers' group, both will have the same access to files and resources shared by this group.",
+            "learning_points": [
+                "Learn how to create and manage user groups.",
+                "Understand group permissions and their impact on access control."
+            ],
+            "real-world-application": "Groups are essential for organizing users and controlling permissions on a multi-user system."
+        },
+        {
+            "id": 5,
+            "description": "Change the ownership of a directory 'project' to user 'john' and group 'developers'.",
+            "solution": "sudo chown john:developers project",
+            "hints": [
+                "'chown' is used to change file or directory ownership.",
+                "The format is 'chown user:group file'."
+            ],
+            "explanation": "'chown' changes the ownership of files and directories. By specifying 'john:developers', you change the owner to 'john' and the group to 'developers'. This ensures that 'john' can access and modify the directory, and members of the 'developers' group also have access.",
+            "learning_points": [
+                "Learn how to change ownership of files and directories.",
+                "Understand the significance of user and group ownership in Linux."
+            ],
+            "real-world-application": "Managing file and directory ownership is critical for securing access to sensitive data and ensuring proper collaboration among users."
+        },
+        {
+            "id": 6,
+            "description": "Set the permissions of a file 'data.txt' so that only the owner can read and write it, and no one else has access.",
+            "solution": "chmod 600 data.txt",
+            "hints": [
+                "'chmod' is used to modify file permissions.",
+                "600 grants read and write permissions to the owner, and no permissions to others."
+            ],
+            "explanation": "The 'chmod' command modifies the file permissions. The permission '600' means the owner has read and write access, but no one else can access the file. This is useful for securing sensitive data.",
+            "learning_points": [
+                "Understand file permissions and how to secure files in Linux.",
+                "Learn how to use numeric permissions with 'chmod'."
+            ],
+            "real-world-application": "File permission management is essential for protecting sensitive files, such as configurations, passwords, or personal data."
+        },
+        {
+            "id": 7,
+            "description": "Monitor real-time system logs for errors using 'journalctl'.",
+            "solution": "journalctl -f",
+            "hints": [
+                "'journalctl' is used to query and display logs collected by systemd.",
+                "The '-f' flag shows real-time log output."
+            ],
+            "explanation": "'journalctl' is a powerful tool to query logs managed by systemd. The '-f' flag allows real-time log monitoring, similar to 'tail -f', but specifically for systemd logs. This is useful for troubleshooting and monitoring system activities.",
+            "learning_points": [
+                "Learn how to use 'journalctl' for log analysis.",
+                "Understand systemd’s role in managing logs on modern Linux systems."
+            ],
+            "real-world-application": "Real-time log monitoring is crucial for troubleshooting and maintaining systems, especially in production environments."
+        },
+        {
+            "id": 8,
+            "description": "Use 'find' to locate all files larger than 100MB in the '/home' directory.",
+            "solution": "find /home -type f -size +100M",
+            "hints": [
+                "'find' searches for files and directories based on conditions.",
+                "'-size +100M' finds files larger than 100MB."
+            ],
+            "explanation": "The 'find' command allows you to search for files based on size, type, and other criteria. Here, the '-size +100M' condition searches for files larger than 100MB, which can help identify large files consuming disk space.",
+            "learning_points": [
+                "Master the 'find' command for advanced searches.",
+                "Learn how to filter files based on size, type, and other attributes."
+            ],
+            "real-world-application": "Finding large files is essential for managing disk space, especially on systems with limited storage."
+        },
+        {
+            "id": 9,
+            "description": "Search for the string 'critical' in all log files in the '/var/log' directory.",
+            "solution": "grep -r 'critical' /var/log/*.log",
+            "hints": [
+                "'grep' is used to search for patterns in files.",
+                "'-r' performs a recursive search in all files in the specified directory."
+            ],
+            "explanation": "'grep -r' recursively searches for the pattern 'critical' in all '.log' files in the '/var/log' directory. This is useful for finding specific keywords or error messages across multiple log files.",
+            "learning_points": [
+                "Learn how to perform recursive searches using 'grep'.",
+                "Understand how to search through multiple files for specific patterns."
+            ],
+            "real-world-application": "Searching logs is a key part of diagnosing system issues and monitoring for specific events or errors."
+        },
+        {
+            "id": 10,
+            "description": "Create a cron job to back up a directory '/home/user' to '/backup' every Sunday at 3 AM.",
+            "solution": "crontab -e\n0 3 * * 0 cp -r /home/user /backup",
+            "hints": [
+                "Use 'crontab' to edit scheduled jobs.",
+                "The cron timing format is 'minute hour day month day-of-week'."
+            ],
+            "explanation": "This cron job is set to run every Sunday at 3 AM, copying the contents of '/home/user' to '/backup'. Cron is a powerful tool for automating repetitive tasks, such as backups.",
+            "learning_points": [
+                "Understand cron timing syntax and how to schedule recurring tasks.",
+                "Learn how to automate backup and maintenance tasks with cron."
+            ],
+            "real-world-application": "Automating backups is critical for data protection, ensuring regular backups without manual intervention."
+        },
+        {
+            "id": 11,
+            "description": "Display the top 10 largest files in the system.",
+            "solution": "sudo du -ah / | sort -rh | head -n 10",
+            "hints": [
+                "'du' displays disk usage, and '-ah' shows human-readable sizes.",
+                "'sort -rh' sorts the files in reverse order, and 'head -n 10' limits the output to the top 10."
+            ],
+            "explanation": "This command finds the largest files on the system. 'du -ah' shows the size of every file, 'sort -rh' sorts the output by size in descending order, and 'head -n 10' limits the output to the top 10 largest files.",
+            "learning_points": [
+                "Learn how to find and manage large files using 'du' and 'sort'.",
+                "Understand how to filter and display data from command outputs."
+            ],
+            "real-world-application": "Finding large files is essential for managing disk space and ensuring system efficiency."
+        },
+        {
+            "id": 12,
+            "description": "Change the system's default editor to 'vim'.",
+            "solution": "sudo update-alternatives --config editor",
+            "hints": [
+                "'update-alternatives' is used to configure default applications.",
+                "Choose 'vim' from the list of available editors."
+            ],
+            "explanation": "'update-alternatives' manages default applications for system tasks. This command allows you to select the default text editor, such as 'vim', 'nano', or 'emacs', depending on your preference.",
+            "learning_points": [
+                "Learn how to configure default system applications.",
+                "Understand the use of text editors in Linux."
+            ],
+            "real-world-application": "Changing the default editor is common when setting up your development environment or when system administration tasks require specific editors."
+        },
+        {
+            "id": 13,
+            "description": "Create a backup of a directory '/home/user' and compress it using 'tar' and 'gzip'.",
+            "solution": "tar -czf backup.tar.gz /home/user",
+            "hints": [
+                "'tar' is used to create archives, and 'gzip' compresses them.",
+                "'-czf' creates a compressed archive."
+            ],
+            "explanation": "The 'tar' command is used to create compressed archives. The '-czf' options specify to create ('c'), compress with gzip ('z'), and write to a file ('f'). This command is useful for backing up directories and compressing them for storage or transfer.",
+            "learning_points": [
+                "Learn how to create compressed backups with 'tar'.",
+                "Understand the importance of backup and compression for system administration."
+            ],
+            "real-world-application": "Compressing backups reduces storage space, making it easier to store or transfer large amounts of data."
+        },
+        {
+            "id": 14,
+            "description": "Verify the integrity of a file 'backup.tar.gz' using 'sha256sum'.",
+            "solution": "sha256sum backup.tar.gz",
+            "hints": [
+                "'sha256sum' generates a checksum to verify file integrity.",
+                "Compare the output with a previously saved checksum to ensure file integrity."
+            ],
+            "explanation": "'sha256sum' generates a cryptographic hash of a file, which is used to verify its integrity. Comparing the hash ensures that the file has not been altered during transfer or storage.",
+            "learning_points": [
+                "Learn how to use 'sha256sum' for file integrity verification.",
+                "Understand the importance of cryptographic hashes in securing data."
+            ],
+            "real-world-application": "Verifying file integrity is crucial when downloading or transferring sensitive files to ensure they have not been tampered with."
+        },
+        {
+            "id": 15,
+            "description": "Set up and configure a basic firewall rule to block incoming traffic on port 80 using `ufw` (Uncomplicated Firewall).",
+            "solution": "sudo ufw deny 80/tcp",
+            "hints": [
+                "'ufw' is the command-line interface for managing `iptables` firewall rules.",
+                "'deny' blocks the specified port from incoming traffic."
+            ],
+            "explanation": "The 'ufw' command is a user-friendly frontend to manage firewall rules with `iptables`. By denying incoming traffic on port 80, you're blocking HTTP traffic to your server. It's important for securing a server by controlling access to services.",
+            "learning_points": [
+                "Learn how to configure firewall rules using `ufw`.",
+                "Understand how to block specific ports for security purposes.",
+                "Familiarize yourself with managing server access through firewall configurations."
+            ],
+            "real-world-application": "Blocking specific ports helps protect your server from unwanted traffic, securing the system against attacks."
+        },
+        {
+            "id": 16,
+            "description": "Enable and start the firewall on your system with `ufw`.",
+            "solution": "sudo ufw enable",
+            "hints": [
+                "'ufw enable' activates the firewall with the currently configured rules.",
+                "Before enabling, ensure you've added the necessary rules to allow legitimate traffic."
+            ],
+            "explanation": "'ufw enable' starts the firewall service, applying the configured rules. It's crucial to ensure that your server is secure by default, allowing only essential services while blocking everything else.",
+            "learning_points": [
+                "Learn how to activate the firewall with `ufw`.",
+                "Understand the importance of enabling firewalls to block unauthorized access."
+            ],
+            "real-world-application": "Enabling the firewall is an essential step in securing any server by ensuring only authorized traffic is allowed."
+        },
+        {
+            "id": 17,
+            "description": "Create a script to back up the `/var/log` directory and store it in the `/backup` folder. Schedule it to run every day at midnight.",
+            "solution": "echo 'tar -czf /backup/logs_$(date +\\%F).tar.gz /var/log' | crontab -\n0 0 * * * /path/to/script.sh",
+            "hints": [
+                "The 'tar' command creates compressed backups.",
+                "Use 'date' to include the current date in the backup filename.",
+                "Schedule the script using cron for daily backups."
+            ],
+            "explanation": "This challenge involves creating a script to back up the `/var/log` directory, compressing it using 'tar', and scheduling the backup to run every day using cron. Scheduling backups ensures system logs are regularly archived for auditing and troubleshooting.",
+            "learning_points": [
+                "Learn how to automate backup tasks with cron.",
+                "Understand how to compress backups with 'tar' and 'gzip'.",
+                "Automate system administration tasks to improve system reliability."
+            ],
+            "real-world-application": "Automating backups is essential for data protection and ensures that logs are safely stored and available for review."
+        },
+        {
+            "id": 18,
+            "description": "Configure a swap file to extend the system's virtual memory.",
+            "solution": "sudo fallocate -l 1G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile",
+            "hints": [
+                "'fallocate' allocates disk space for the swap file.",
+                "'chmod 600' sets secure permissions for the swap file.",
+                "'mkswap' prepares the file to be used as swap space."
+            ],
+            "explanation": "A swap file can be used to extend virtual memory when the system’s RAM is exhausted. The steps involve creating the swap file, preparing it, and activating it. This process helps prevent system crashes due to low memory.",
+            "learning_points": [
+                "Learn how to extend system memory using swap space.",
+                "Understand how swap space helps prevent system crashes when physical memory is full."
+            ],
+            "real-world-application": "Swap files are crucial for systems with limited physical memory, allowing applications to run more smoothly under high memory load."
+        },
+        {
+            "id": 19,
+            "description": "Find all running processes owned by the user 'john'.",
+            "solution": "ps -u john",
+            "hints": [
+                "'ps' is used to display information about running processes.",
+                "'-u' filters processes by the user."
+            ],
+            "explanation": "The 'ps' command with the '-u' flag filters running processes by user. This is useful for monitoring processes specific to a user, especially in multi-user systems where different users may have processes running simultaneously.",
+            "learning_points": [
+                "Learn to monitor processes by specific users using 'ps'.",
+                "Understand how to filter system information based on specific criteria."
+            ],
+            "real-world-application": "Monitoring user-specific processes helps system administrators manage resources and troubleshoot user-specific issues."
+        },
+        {
+            "id": 20,
+            "description": "Create a cron job to delete files older than 30 days in the `/tmp` directory.",
+            "solution": "find /tmp -type f -mtime +30 -exec rm {} \\; | crontab -\n0 0 * * * /path/to/script.sh",
+            "hints": [
+                "'find' can search for files based on their modification time.",
+                "'-exec rm' executes the 'rm' command to delete files."
+            ],
+            "explanation": "This challenge involves using 'find' to locate files older than 30 days and then deleting them. Automating this task with cron ensures that temporary files are cleaned up regularly, freeing disk space and improving system performance.",
+            "learning_points": [
+                "Learn to use 'find' to search and filter files based on time criteria.",
+                "Understand how to automate file cleanup tasks with cron."
+            ],
+            "real-world-application": "Automating the deletion of old files helps maintain system health and prevents unnecessary disk usage from temporary files."
+        },
+        {
+            "id": 21,
+            "description": "Configure the system to automatically update and upgrade installed packages every week.",
+            "solution": "echo '0 3 * * 1 sudo apt update && sudo apt upgrade -y' | crontab -",
+            "hints": [
+                "Automate package management with cron.",
+                "The '-y' flag automatically confirms package upgrades."
+            ],
+            "explanation": "Automating system updates ensures that the system is always up-to-date with the latest security patches and bug fixes. This cron job will run every Monday at 3 AM to update and upgrade the installed packages.",
+            "learning_points": [
+                "Learn to automate system updates for better security.",
+                "Understand the importance of maintaining up-to-date packages on Linux systems."
+            ],
+            "real-world-application": "Automated updates are vital for ensuring systems stay secure and reliable, especially on servers that need minimal downtime."
+        },
+        {
+            "id": 22,
+            "description": "Create a new directory and set its access permissions to allow the owner full access, group members to read and execute, and others no access.",
+            "solution": "mkdir /secure_directory && chmod 750 /secure_directory",
+            "hints": [
+                "'mkdir' is used to create directories.",
+                "'chmod 750' sets specific permissions for the owner, group, and others."
+            ],
+            "explanation": "The 'chmod 750' command sets the permissions for a directory so that the owner has full access, the group can read and execute, and others have no access. This is commonly used for sensitive directories where only authorized users should have access.",
+            "learning_points": [
+                "Learn how to set directory permissions using 'chmod'.",
+                "Understand how access control works in Linux and how it enhances security."
+            ],
+            "real-world-application": "Setting secure permissions for sensitive data is essential for protecting files from unauthorized access."
+        },
+        {
+            "id": 23,
+            "description": "Check which processes are listening on port 22 (SSH).",
+            "solution": "sudo lsof -i :22",
+            "hints": [
+                "'lsof' lists open files and the processes associated with them.",
+                "'-i' shows processes that are using a specific internet port."
+            ],
+            "explanation": "'lsof' (List Open Files) can be used to list processes that are using specific ports. In this case, we use '-i :22' to show which processes are listening on port 22, typically used for SSH.",
+            "learning_points": [
+                "Learn how to use 'lsof' to monitor network ports and associated processes.",
+                "Understand the importance of monitoring network ports and security."
+            ],
+            "real-world-application": "Monitoring which processes are listening on critical ports (like SSH) is key to ensuring that only authorized services are running on the system."
+        },
+        {
+            "id": 24,
+            "description": "Display the top 10 processes by CPU usage.",
+            "solution": "ps aux --sort=-%cpu | head -n 10",
+            "hints": [
+                "'ps aux' shows detailed information about running processes.",
+                "'--sort=-%cpu' sorts the processes by CPU usage in descending order."
+            ],
+            "explanation": "'ps aux' lists all running processes with detailed information. By sorting them by CPU usage, this command helps identify processes that are consuming the most resources.",
+            "learning_points": [
+                "Learn how to monitor system resource usage with 'ps'.",
+                "Understand the importance of monitoring CPU usage and performance."
+            ],
+            "real-world-application": "Identifying processes that consume excessive CPU resources can help optimize system performance and prevent slowdowns."
+        },
+        {
+            "id": 25,
+            "description": "Create a backup of a MySQL database called 'sales' to a file 'sales_backup.sql'.",
+            "solution": "mysqldump -u root -p sales > sales_backup.sql",
+            "hints": [
+                "'mysqldump' is used to create a backup of a MySQL database.",
+                "Use '-u' for the username and '-p' to prompt for the password."
+            ],
+            "explanation": "The 'mysqldump' command is used to export a MySQL database to a file. In this example, the 'sales' database is backed up to 'sales_backup.sql', which can then be stored or transferred.",
+            "learning_points": [
+                "Learn how to back up MySQL databases using 'mysqldump'.",
+                "Understand the importance of database backups for data protection."
+            ],
+            "real-world-application": "Backing up databases is critical for preventing data loss and ensuring the availability of business-critical information."
+        },
+        {
+            "id": 26,
+            "description": "Restore a MySQL database from a backup file 'sales_backup.sql'.",
+            "solution": "mysql -u root -p sales < sales_backup.sql",
+            "hints": [
+                "'mysql' is used to interact with MySQL databases.",
+                "Use '<' to load the contents of the backup file into the database."
+            ],
+            "explanation": "The 'mysql' command is used to restore a MySQL database from a backup file. In this case, the backup 'sales_backup.sql' is restored into the 'sales' database.",
+            "learning_points": [
+                "Learn how to restore MySQL databases from backups.",
+                "Understand the process of database recovery and data restoration."
+            ],
+            "real-world-application": "Restoring backups is critical for disaster recovery and ensuring that business data is available after a system failure."
+        },
+        {
+            "id": 27,
+            "description": "Enable password authentication for SSH and restart the SSH service.",
+            "solution": "sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config && sudo systemctl restart sshd",
+            "hints": [
+                "'sed' is used to edit files in place.",
+                "You need to modify the 'PasswordAuthentication' setting in '/etc/ssh/sshd_config'."
+            ],
+            "explanation": "The 'PasswordAuthentication' setting in the SSH configuration file controls whether password authentication is allowed. This command enables password authentication for SSH and then restarts the SSH service to apply the changes.",
+            "learning_points": [
+                "Learn how to configure SSH authentication methods.",
+                "Understand the security implications of enabling password authentication."
+            ],
+            "real-world-application": "Enabling password authentication for SSH may be necessary in certain environments, but it's important to balance security considerations with accessibility."
+        },
+        {
+            "id": 28,
+            "description": "Check the status of a specific service 'apache2' and stop it if it's running.",
+            "solution": "sudo systemctl status apache2 && sudo systemctl stop apache2",
+            "hints": [
+                "'systemctl status' shows the status of a service.",
+                "'systemctl stop' stops a running service."
+            ],
+            "explanation": "'systemctl status apache2' checks the status of the 'apache2' service. If it’s running, 'systemctl stop apache2' stops the service. This is useful for managing web server services.",
+            "learning_points": [
+                "Learn how to manage services with 'systemctl'.",
+                "Understand how to stop services and check their status."
+    ],
+            "real-world-application": "Stopping unnecessary services is a good practice for securing a system and freeing up resources."
+        },
+        {
+            "id": 29,
+            "description": "Create a cron job that runs every day at 6 AM to synchronize the system time with an NTP server.",
+            "solution": "echo '0 6 * * * sudo ntpdate pool.ntp.org' | crontab -",
+            "hints": [
+                "'ntpdate' is used to synchronize the system time with an NTP server.",
+                "'crontab' is used to schedule periodic tasks."
+            ],
+            "explanation": "The 'ntpdate' command synchronizes the system time with an NTP (Network Time Protocol) server. The cron job ensures the system time is synchronized every day at 6 AM, ensuring accurate timekeeping for system processes.",
+            "learning_points": [
+                "Learn how to synchronize system time with NTP.",
+                "Automate system time synchronization with cron."
+            ],
+            "real-world-application": "Time synchronization is crucial for accurate logging, file timestamps, and scheduled tasks across multiple systems."
+        },
+        {
+            "id": 30,
+            "description": "Install a software package 'htop' (an interactive process viewer) and verify the installation.",
+            "solution": "sudo apt install htop && htop",
+            "hints": [
+                "'apt install' is used to install software packages on Debian-based systems.",
+                "'htop' is an interactive tool for viewing processes and system resources."
+            ],
+            "explanation": "'htop' is an advanced version of the 'top' command, providing a more interactive and user-friendly interface for monitoring processes and system resource usage. This command installs 'htop' and launches it to verify the installation.",
+            "learning_points": [
+                "Learn how to install software packages using 'apt'.",
+                "Familiarize yourself with system monitoring tools like 'htop'."
+            ],
+            "real-world-application": "'htop' is widely used by system administrators and developers to monitor system resources and processes in real-time, helping with performance analysis and debugging."
+        }
+    ]
+}
+
