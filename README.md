@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Linux Learning Game** is an interactive, CLI-based tool designed to help users learn and practice Linux commands in a gamified way. The game offers challenges across multiple levels (Beginner, Intermediate, and Advanced) that test users' knowledge of essential Linux commands, system administration, file management, networking, security, and more. 
+The **Linux Learning Game** is an interactive, CLI-based tool designed to help users learn and practice Linux commands in a gamified way. The game offers challenges across multiple levels (Beginner, Intermediate, and Advanced) that test users' knowledge of essential Linux commands, system administration, file management, networking, security, and more.
 
 This project is designed for users ranging from beginners to advanced Linux users, helping them to strengthen their command-line skills through a series of hands-on challenges.
 
@@ -75,7 +75,7 @@ This will install the necessary libraries, including `colorama` for color output
 To start the game, simply run the `cli.py` file:
 
 ```bash
-python cli.py       #For windows 
+python cli.py       #For windows
 python3 cli.py      #For mac or linux
 ```
 
@@ -135,5 +135,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Colorama** for adding color to the terminal interface.
 - **Linux Foundation** for providing comprehensive resources on Linux commands.
 - **The open-source community** for contributing to various Linux utilities and tools.
-
 ---
+
